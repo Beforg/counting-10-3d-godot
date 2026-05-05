@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b8v0sdoug36mj"]
+
+[ext_resource type="PackedScene" uid="uid://bp2rvneeau6de" path="res://entities/player.tscn" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://djmw34p3kn1ol" path="res://world/enemy.gd" id="2_4717r"]
+[ext_resource type="Texture2D" uid="uid://b7pmdtisy8wmv" path="res://assets/enemy_iddle.png" id="3_h5o24"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmdvd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fn3g3"]
+radius = 4.010742
+
+[node name="World" type="Node3D" unique_id=1507072864]
+
+[node name="Chao" type="CSGBox3D" parent="." unique_id=885996407]
+use_collision = true
+size = Vector3(100, 0.5, 100)
+
+[node name="Player" parent="." unique_id=2087979505 instance=ExtResource("1_6xmxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7673923, 0)
+
+[node name="Enemy" type="CharacterBody3D" parent="." unique_id=1642911182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.173508, 2.0628738, 6.1683216)
+script = ExtResource("2_4717r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=744100749]
+shape = SubResource("CapsuleShape3D_mmdvd")
+
+[node name="Sprite3D" type="Sprite3D" parent="Enemy" unique_id=246445271]
+billboard = 2
+texture = ExtResource("3_h5o24")
+
+[node name="TerrorAura" type="Area3D" parent="Enemy" unique_id=939817057]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/TerrorAura" unique_id=1971587057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23711872, -0.042467594)
+shape = SubResource("CylinderShape3D_fn3g3")
