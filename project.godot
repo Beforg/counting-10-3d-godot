@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Counting 10"
+run/main_scene="uid://b8v0sdoug36mj"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://rap8kl1sidsi"
 
 [physics]
 
