@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bp2rvneeau6de"]
 
 [ext_resource type="Script" uid="uid://dugpnf4iw4mg2" path="res://entities/player.gd" id="1_merdl"]
+[ext_resource type="PackedScene" uid="uid://0yylcrkforgl" path="res://ui/hud.tscn" id="2_b0kkn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcf2h"]
 
@@ -14,3 +15,5 @@ shape = SubResource("CapsuleShape3D_tcf2h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64577353, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=849943507]
+
+[node name="HUD" parent="." unique_id=1687985223 instance=ExtResource("2_b0kkn")]
