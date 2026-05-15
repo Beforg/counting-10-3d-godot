@@ -3,13 +3,32 @@
 [ext_resource type="PackedScene" uid="uid://bp2rvneeau6de" path="res://entities/player.tscn" id="1_6xmxd"]
 [ext_resource type="Script" uid="uid://djmw34p3kn1ol" path="res://world/enemy.gd" id="2_4717r"]
 [ext_resource type="Texture2D" uid="uid://b7pmdtisy8wmv" path="res://assets/enemy_iddle.png" id="3_h5o24"]
+[ext_resource type="Script" uid="uid://bl1rwti2436ee" path="res://world/gasoline_can.gd" id="4_fn3g3"]
+[ext_resource type="Texture2D" uid="uid://cq3basimfl8s7" path="res://assets/galao.png" id="4_h5o24"]
+[ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="6_sc4t8"]
+
+[sub_resource type="Environment" id="Environment_fn3g3"]
+background_mode = 1
+background_color = Color(0.0018729585, 3.985828e-08, 0.03775244, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.45
+volumetric_fog_albedo = Color(0.06879827, 0.06879828, 0.06879828, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmdvd"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fn3g3"]
 radius = 4.010742
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
+
 [node name="World" type="Node3D" unique_id=1507072864]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643046218]
+transform = Transform3D(1, 0, 0, 0, -0.50819993, 0.86123914, 0, -0.86123914, -0.50819993, 0, 15.638879, -23.12785)
+light_energy = 0.05
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=690380970]
+environment = SubResource("Environment_fn3g3")
 
 [node name="Chao" type="CSGBox3D" parent="." unique_id=885996407]
 use_collision = true
@@ -18,9 +37,10 @@ size = Vector3(100, 0.5, 100)
 [node name="Player" parent="." unique_id=2087979505 instance=ExtResource("1_6xmxd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7673923, 0)
 
-[node name="Enemy" type="CharacterBody3D" parent="." unique_id=1642911182]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.173508, 2.0628738, 6.1683216)
+[node name="Enemy" type="CharacterBody3D" parent="." unique_id=1642911182 node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.359638, 1.9450479, 5.715513)
 script = ExtResource("2_4717r")
+player = NodePath("../Player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy" unique_id=744100749]
 shape = SubResource("CapsuleShape3D_mmdvd")
@@ -34,3 +54,21 @@ texture = ExtResource("3_h5o24")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy/TerrorAura" unique_id=1971587057]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23711872, -0.042467594)
 shape = SubResource("CylinderShape3D_fn3g3")
+
+[node name="GasolineCan" type="Area3D" parent="." unique_id=1651115810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.49792, 0.9013562, 1.9148583)
+script = ExtResource("4_fn3g3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GasolineCan" unique_id=1209460820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05606556, -0.13778746, -0.2320466)
+shape = SubResource("BoxShape3D_mmdvd")
+
+[node name="Sprite3D" type="Sprite3D" parent="GasolineCan" unique_id=506474742]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.11764717, -0.03588605, 0.10246396)
+billboard = 2
+texture = ExtResource("4_h5o24")
+
+[node name="CollectSound" type="AudioStreamPlayer3D" parent="GasolineCan" unique_id=656814578]
+stream = ExtResource("6_sc4t8")
+
+[connection signal="body_entered" from="GasolineCan" to="GasolineCan" method="_on_body_entered"]
