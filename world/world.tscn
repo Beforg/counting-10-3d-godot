@@ -6,12 +6,14 @@
 [ext_resource type="Script" uid="uid://bl1rwti2436ee" path="res://world/gasoline_can.gd" id="4_fn3g3"]
 [ext_resource type="Texture2D" uid="uid://cq3basimfl8s7" path="res://assets/galao.png" id="4_h5o24"]
 [ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="6_sc4t8"]
+[ext_resource type="Script" uid="uid://d0on70qf7jdg8" path="res://world/adrenaline.gd" id="7_ai45w"]
+[ext_resource type="Texture2D" uid="uid://cnfcgqt2hj6nu" path="res://assets/adrenalina.png" id="7_sc4t8"]
 
 [sub_resource type="Environment" id="Environment_fn3g3"]
 background_mode = 1
 background_color = Color(0.0018729585, 3.985828e-08, 0.03775244, 1)
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.45
+volumetric_fog_density = 0.35
 volumetric_fog_albedo = Color(0.06879827, 0.06879828, 0.06879828, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmdvd"]
@@ -20,6 +22,8 @@ volumetric_fog_albedo = Color(0.06879827, 0.06879828, 0.06879828, 1)
 radius = 4.010742
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ai45w"]
 
 [node name="World" type="Node3D" unique_id=1507072864]
 
@@ -71,4 +75,21 @@ texture = ExtResource("4_h5o24")
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="GasolineCan" unique_id=656814578]
 stream = ExtResource("6_sc4t8")
 
+[node name="Adrenaline" type="Area3D" parent="." unique_id=437342686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4421661, 5.7283735)
+script = ExtResource("7_ai45w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Adrenaline" unique_id=911421523]
+transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, 1.2036467, 0)
+shape = SubResource("CylinderShape3D_ai45w")
+
+[node name="Sprite3D" type="Sprite3D" parent="Adrenaline" unique_id=91840072]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 1.3347569, 0)
+billboard = 2
+texture = ExtResource("7_sc4t8")
+
+[node name="CollectSound" type="AudioStreamPlayer3D" parent="Adrenaline" unique_id=1569352222]
+stream = ExtResource("6_sc4t8")
+
 [connection signal="body_entered" from="GasolineCan" to="GasolineCan" method="_on_body_entered"]
+[connection signal="body_entered" from="Adrenaline" to="Adrenaline" method="_on_body_entered"]
