@@ -9,8 +9,8 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.name == "Player":
 		
 		# 1. Avisa o Cérebro (GameManager)
-		GameManager.collect_adrenaline()
-		print("Pegou Adrenalina!: ", GameManager.adrenaline_count)
+		GameManager.collect_cure()
+		print("Pegou Cura!: ", GameManager.cures_count)
 		
 		# 2. Toca o som espacial de coleta
 		audio.play()
