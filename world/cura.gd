@@ -8,13 +8,17 @@ func _on_body_entered(body: Node3D) -> void:
 	# Verifica se quem esbarrou foi o Player
 	if body.name == "Player":
 		
-		GameManager.collect_gasoline()
-		print("Pegou Gasolina! Total: ", GameManager.gasoline_count)
+		# 1. Avisa o Cérebro (GameManager)
+		GameManager.collect_adrenaline()
+		print("Pegou Adrenalina!: ", GameManager.adrenaline_count)
 		
+		# 2. Toca o som espacial de coleta
 		audio.play()
 		
+		# 3. Fica invisível e intocável imediatamente para não ser pego duas vezes
 		visual.visible = false
 		collision.set_deferred("disabled", true)
 		
+		# 4. A MÁGICA: Espera o som terminar antes de se autodestruir!
 		await audio.finished
 		queue_free()

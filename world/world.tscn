@@ -8,13 +8,17 @@
 [ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="6_sc4t8"]
 [ext_resource type="Script" uid="uid://d0on70qf7jdg8" path="res://world/adrenaline.gd" id="7_ai45w"]
 [ext_resource type="Texture2D" uid="uid://cnfcgqt2hj6nu" path="res://assets/adrenalina.png" id="7_sc4t8"]
+[ext_resource type="Script" uid="uid://b2lkt41i0i37p" path="res://world/cura.gd" id="9_fyhu2"]
+[ext_resource type="Texture2D" uid="uid://dr3o0vmg8a2i4" path="res://assets/cura.png" id="10_ov2xu"]
 
 [sub_resource type="Environment" id="Environment_fn3g3"]
 background_mode = 1
 background_color = Color(0.0018729585, 3.985828e-08, 0.03775244, 1)
+ambient_light_energy = 0.1
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.35
+volumetric_fog_density = 0.2
 volumetric_fog_albedo = Color(0.06879827, 0.06879828, 0.06879828, 1)
+volumetric_fog_length = 32.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmdvd"]
 
@@ -25,11 +29,13 @@ radius = 4.010742
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ai45w"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mad0u"]
+
 [node name="World" type="Node3D" unique_id=1507072864]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643046218]
 transform = Transform3D(1, 0, 0, 0, -0.50819993, 0.86123914, 0, -0.86123914, -0.50819993, 0, 15.638879, -23.12785)
-light_energy = 0.05
+light_energy = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=690380970]
 environment = SubResource("Environment_fn3g3")
@@ -51,6 +57,8 @@ shape = SubResource("CapsuleShape3D_mmdvd")
 
 [node name="Sprite3D" type="Sprite3D" parent="Enemy" unique_id=246445271]
 billboard = 2
+shaded = true
+alpha_cut = 1
 texture = ExtResource("3_h5o24")
 
 [node name="TerrorAura" type="Area3D" parent="Enemy" unique_id=939817057]
@@ -70,6 +78,8 @@ shape = SubResource("BoxShape3D_mmdvd")
 [node name="Sprite3D" type="Sprite3D" parent="GasolineCan" unique_id=506474742]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.11764717, -0.03588605, 0.10246396)
 billboard = 2
+shaded = true
+alpha_cut = 1
 texture = ExtResource("4_h5o24")
 
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="GasolineCan" unique_id=656814578]
@@ -86,10 +96,30 @@ shape = SubResource("CylinderShape3D_ai45w")
 [node name="Sprite3D" type="Sprite3D" parent="Adrenaline" unique_id=91840072]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 1.3347569, 0)
 billboard = 2
+shaded = true
+alpha_cut = 1
 texture = ExtResource("7_sc4t8")
 
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="Adrenaline" unique_id=1569352222]
 stream = ExtResource("6_sc4t8")
 
+[node name="Cura" type="Area3D" parent="." unique_id=236866692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81690574, 3.4442887)
+script = ExtResource("9_fyhu2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cura" unique_id=1060966968]
+shape = SubResource("BoxShape3D_mad0u")
+
+[node name="Sprite3D" type="Sprite3D" parent="Cura" unique_id=30037675]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0, 0, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture = ExtResource("10_ov2xu")
+
+[node name="CollectSound" type="AudioStreamPlayer3D" parent="Cura" unique_id=478471077]
+stream = ExtResource("6_sc4t8")
+
 [connection signal="body_entered" from="GasolineCan" to="GasolineCan" method="_on_body_entered"]
 [connection signal="body_entered" from="Adrenaline" to="Adrenaline" method="_on_body_entered"]
+[connection signal="body_entered" from="Cura" to="Cura" method="_on_body_entered"]
