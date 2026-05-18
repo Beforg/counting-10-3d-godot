@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://jbchtg2nic4y"]
+
+[ext_resource type="Script" uid="uid://6nttlijmqta0" path="res://main_menu.gd" id="1_gvk52"]
+
+[node name="Menu" type="Control" unique_id=1978130722]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gvk52")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1302573674]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -12.0
+offset_right = 1194.0
+offset_bottom = 702.0
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2064087475]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 123.0
+offset_right = 996.0
+offset_bottom = 700.0
+
+[node name="Jogar" type="Button" parent="VBoxContainer" unique_id=271109229]
+layout_mode = 2
+text = "Jogar
+"
+
+[node name="Sair" type="Button" parent="VBoxContainer" unique_id=275757069]
+layout_mode = 2
+text = "Sair
+"
+
+[node name="Label" type="Label" parent="." unique_id=840337455]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.035
+anchor_bottom = 0.018000001
+offset_left = 525.0
+offset_top = 46.0
+offset_right = 748.68
+offset_bottom = 129.336
+text = "Counting 10"
+
+[connection signal="pressed" from="VBoxContainer/Jogar" to="." method="_on_jogar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sair" to="." method="_on_sair_pressed"]
