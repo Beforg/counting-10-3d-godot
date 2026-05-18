@@ -35,7 +35,7 @@ size = Vector3(2.2641718, 0.7712097, 4.282837)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643046218]
 transform = Transform3D(1, 0, 0, 0, -0.50819993, 0.86123914, 0, -0.86123914, -0.50819993, 0, 15.638879, -23.12785)
-light_energy = 22.105
+light_energy = 0.01
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=690380970]
 environment = SubResource("Environment_fn3g3")
