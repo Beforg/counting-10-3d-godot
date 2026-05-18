@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://bp2rvneeau6de" path="res://entities/player.tscn" id="1_6xmxd"]
 [ext_resource type="Script" uid="uid://djmw34p3kn1ol" path="res://world/enemy.gd" id="2_4717r"]
 [ext_resource type="Texture2D" uid="uid://b7pmdtisy8wmv" path="res://assets/enemy_iddle.png" id="3_h5o24"]
-[ext_resource type="Script" uid="uid://bl1rwti2436ee" path="res://world/gasoline_can.gd" id="4_fn3g3"]
-[ext_resource type="Texture2D" uid="uid://cq3basimfl8s7" path="res://assets/galao.png" id="4_h5o24"]
+[ext_resource type="PackedScene" uid="uid://b1phevm10e388" path="res://world/gasoline_can.tscn" id="4_ov2xu"]
+[ext_resource type="PackedScene" uid="uid://kanbnrxjkxw2" path="res://world/adrenaline.tscn" id="5_mad0u"]
 [ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="6_sc4t8"]
-[ext_resource type="Script" uid="uid://d0on70qf7jdg8" path="res://world/adrenaline.gd" id="7_ai45w"]
-[ext_resource type="Texture2D" uid="uid://cnfcgqt2hj6nu" path="res://assets/adrenalina.png" id="7_sc4t8"]
 [ext_resource type="Script" uid="uid://b2lkt41i0i37p" path="res://world/cura.gd" id="9_fyhu2"]
 [ext_resource type="Texture2D" uid="uid://dr3o0vmg8a2i4" path="res://assets/cura.png" id="10_ov2xu"]
+[ext_resource type="PackedScene" uid="uid://cs2i60rsjex1" path="res://assets/pine_trees_pack__ps1_low_poly.glb" id="11_ov2xu"]
+[ext_resource type="Script" uid="uid://ewg0oc5iu0x1" path="res://world/victory_point.gd" id="12_ocfjn"]
+[ext_resource type="Texture2D" uid="uid://1bjvufbfkwi" path="res://assets/tmp.png" id="13_dqqhb"]
 
 [sub_resource type="Environment" id="Environment_fn3g3"]
 background_mode = 1
@@ -25,17 +26,16 @@ volumetric_fog_length = 32.0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fn3g3"]
 radius = 4.010742
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_mmdvd"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_ai45w"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_mad0u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b2suy"]
+size = Vector3(2.2641718, 0.7712097, 4.282837)
 
 [node name="World" type="Node3D" unique_id=1507072864]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643046218]
 transform = Transform3D(1, 0, 0, 0, -0.50819993, 0.86123914, 0, -0.86123914, -0.50819993, 0, 15.638879, -23.12785)
-light_energy = 0.01
+light_energy = 22.105
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=690380970]
 environment = SubResource("Environment_fn3g3")
@@ -67,41 +67,11 @@ texture = ExtResource("3_h5o24")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.23711872, -0.042467594)
 shape = SubResource("CylinderShape3D_fn3g3")
 
-[node name="GasolineCan" type="Area3D" parent="." unique_id=1651115810]
+[node name="GasolineCan" parent="." unique_id=977605281 instance=ExtResource("4_ov2xu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.49792, 0.9013562, 1.9148583)
-script = ExtResource("4_fn3g3")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GasolineCan" unique_id=1209460820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05606556, -0.13778746, -0.2320466)
-shape = SubResource("BoxShape3D_mmdvd")
-
-[node name="Sprite3D" type="Sprite3D" parent="GasolineCan" unique_id=506474742]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.11764717, -0.03588605, 0.10246396)
-billboard = 2
-shaded = true
-alpha_cut = 1
-texture = ExtResource("4_h5o24")
-
-[node name="CollectSound" type="AudioStreamPlayer3D" parent="GasolineCan" unique_id=656814578]
-stream = ExtResource("6_sc4t8")
-
-[node name="Adrenaline" type="Area3D" parent="." unique_id=437342686]
+[node name="Adrenaline" parent="." unique_id=562960150 instance=ExtResource("5_mad0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4421661, 5.7283735)
-script = ExtResource("7_ai45w")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Adrenaline" unique_id=911421523]
-transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, 1.2036467, 0)
-shape = SubResource("CylinderShape3D_ai45w")
-
-[node name="Sprite3D" type="Sprite3D" parent="Adrenaline" unique_id=91840072]
-transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 1.3347569, 0)
-billboard = 2
-shaded = true
-alpha_cut = 1
-texture = ExtResource("7_sc4t8")
-
-[node name="CollectSound" type="AudioStreamPlayer3D" parent="Adrenaline" unique_id=1569352222]
-stream = ExtResource("6_sc4t8")
 
 [node name="Cura" type="Area3D" parent="." unique_id=236866692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81690574, 3.4442887)
@@ -120,6 +90,53 @@ texture = ExtResource("10_ov2xu")
 [node name="CollectSound" type="AudioStreamPlayer3D" parent="Cura" unique_id=478471077]
 stream = ExtResource("6_sc4t8")
 
-[connection signal="body_entered" from="GasolineCan" to="GasolineCan" method="_on_body_entered"]
-[connection signal="body_entered" from="Adrenaline" to="Adrenaline" method="_on_body_entered"]
+[node name="Sketchfab_Scene" parent="." unique_id=1785399869 instance=ExtResource("11_ov2xu")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, -14.267015, 0.2500009, -14.618584)
+
+[node name="Sketchfab_Scene2" parent="." unique_id=1252962359 instance=ExtResource("11_ov2xu")]
+transform = Transform3D(0.50272864, -0.01677954, -0.20977914, 0.011849313, 0.54466, -0.015169076, 0.21011527, 0.009431547, 0.50277984, -15.442443, 0.25000042, -18.399977)
+
+[node name="VictoryPoint" type="Area3D" parent="." unique_id=1108368906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.69447803, -8.992237)
+script = ExtResource("12_ocfjn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VictoryPoint" unique_id=421201148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62333024, 0.8096235, -2.1651478)
+shape = SubResource("BoxShape3D_b2suy")
+
+[node name="Sprite3D" type="Sprite3D" parent="VictoryPoint" unique_id=273269441]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.26698732)
+texture = ExtResource("13_dqqhb")
+
+[node name="GasolineCan2" parent="." unique_id=1291894451 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5027771, 0.78588605, -4.935505)
+
+[node name="GasolineCan3" parent="." unique_id=1216294523 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7208977, 0.78588605, -3.2383056)
+
+[node name="GasolineCan4" parent="." unique_id=823604636 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6844554, 0.7858858, -2.6378317)
+
+[node name="GasolineCan5" parent="." unique_id=1954495567 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1957445, 0.78588605, -4.368612)
+
+[node name="GasolineCan6" parent="." unique_id=1152923864 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7688484, 0.78588605, -1.5904)
+
+[node name="GasolineCan7" parent="." unique_id=1975781949 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1900887, 0.7858858, -4.107293)
+
+[node name="GasolineCan8" parent="." unique_id=1382076859 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2688377, 0.7858858, -2.056701)
+
+[node name="GasolineCan9" parent="." unique_id=429257926 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5121818, 0.78588605, -3.8601394)
+
+[node name="GasolineCan10" parent="." unique_id=1094390095 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6185598, 0.7858858, -6.1448693)
+
+[node name="GasolineCan11" parent="." unique_id=2027610109 instance=ExtResource("4_ov2xu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893013, 0.7858858, -5.1367483)
+
 [connection signal="body_entered" from="Cura" to="Cura" method="_on_body_entered"]
+[connection signal="body_entered" from="VictoryPoint" to="VictoryPoint" method="_on_body_entered"]

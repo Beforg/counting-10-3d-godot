@@ -20,6 +20,17 @@ func _ready() -> void:
 	base_camera_pos = camera.position 
 
 func _input(event: InputEvent) -> void:
+	var item_sound = $CollectSound
+	if event.is_action_pressed("usar_cura"):
+		if GameManager.cures_count > 0:
+			GameManager.cures_count -= 1
+			GameManager.terror_level = 0
+			item_sound.play()
+			GameManager.is_addicted = false # Remove o vício
+			print("Você usou a cura! Estado normalizado.")
+		else:
+			print("Você não tem curas!")
+	
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -30,7 +41,12 @@ func _input(event: InputEvent) -> void:
 		if GameManager.try_use_adrenaline():
 			GameManager.terror_level = max(0.0, GameManager.terror_level - 30.0)
 			print("PLAYER 3D: Adrenalina injetada!")
-
+	if event.is_action_pressed("usar_tocha"):
+		if GameManager.torch_refills > 0:
+			item_sound.play()
+			GameManager.torch_refills -= 1
+			torch.texture_scale = clamp(torch.texture_scale + 1, 0.2, 9.99)
+			print("Tocha recarregada!")
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
