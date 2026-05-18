@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dugpnf4iw4mg2" path="res://entities/player.gd" id="1_merdl"]
 [ext_resource type="PackedScene" uid="uid://0yylcrkforgl" path="res://ui/hud.tscn" id="2_b0kkn"]
+[ext_resource type="AudioStream" uid="uid://dehedm8sat58e" path="res://assets/audio/Calm_hearbeat.wav" id="3_qly61"]
+[ext_resource type="AudioStream" uid="uid://buxi36esjpawq" path="res://assets/audio/Scared_heartbeat.wav" id="4_qsoyl"]
+[ext_resource type="AudioStream" uid="uid://betx124d7hpeq" path="res://assets/audio/lesiakower-pills-container-shake-455964.mp3" id="5_6nm46"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcf2h"]
 
@@ -29,3 +32,12 @@ spot_angle = 30.0
 spot_angle_attenuation = 1.624505
 
 [node name="HUD" parent="." unique_id=1687985223 instance=ExtResource("2_b0kkn")]
+
+[node name="HeartbeatLow" type="AudioStreamPlayer" parent="." unique_id=1126102430]
+stream = ExtResource("3_qly61")
+
+[node name="HeartbeatHight" type="AudioStreamPlayer" parent="." unique_id=2070160541]
+stream = ExtResource("4_qsoyl")
+
+[node name="UseItem" type="AudioStreamPlayer" parent="." unique_id=184895196]
+stream = ExtResource("5_6nm46")

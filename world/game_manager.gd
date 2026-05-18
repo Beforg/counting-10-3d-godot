@@ -62,7 +62,7 @@ func try_use_adrenaline() -> bool:
 
 func _check_addiction():
 	var now = Time.get_ticks_msec() / 1000.0
-	while adrenaline_use_history.size() > 0 and now - adrenaline_use_history[0] > 180.0:
+	while adrenaline_use_history.size() > 0 and now - adrenaline_use_history[0] > 60.0:
 		adrenaline_use_history.remove_at(0)
 	
 	if adrenaline_use_history.size() >= 3:

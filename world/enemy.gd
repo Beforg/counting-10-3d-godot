@@ -46,9 +46,9 @@ func _physics_process(delta: float) -> void:
 		if GameManager.terror_level >= 98.0 or is_furious:
 			current_state = State.HUNTING
 			current_safe_zone = 0.0 
-		elif light > 0.8: # Ajuste conforme a energia máxima da sua lanterna
+		elif light > 5: # Ajuste conforme a energia máxima da sua lanterna
 			current_state = State.HIDDEN
-		elif light > 0.3: 
+		elif light > 3: 
 			current_state = State.STALKING
 		else:
 			current_state = State.HUNTING
