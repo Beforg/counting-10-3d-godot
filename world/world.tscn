@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b8v0sdoug36mj"]
 
 [ext_resource type="PackedScene" uid="uid://bp2rvneeau6de" path="res://entities/player.tscn" id="1_6xmxd"]
+[ext_resource type="Script" uid="uid://y6j33v000aih" path="res://world/world.gd" id="1_ocfjn"]
 [ext_resource type="Script" uid="uid://djmw34p3kn1ol" path="res://world/enemy.gd" id="2_4717r"]
 [ext_resource type="Texture2D" uid="uid://b7pmdtisy8wmv" path="res://assets/enemy_iddle.png" id="3_h5o24"]
 [ext_resource type="PackedScene" uid="uid://b1phevm10e388" path="res://world/gasoline_can.tscn" id="4_ov2xu"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dr3o0vmg8a2i4" path="res://assets/cura.png" id="10_ov2xu"]
 [ext_resource type="PackedScene" uid="uid://cs2i60rsjex1" path="res://assets/pine_trees_pack__ps1_low_poly.glb" id="11_ov2xu"]
 [ext_resource type="Script" uid="uid://ewg0oc5iu0x1" path="res://world/victory_point.gd" id="12_ocfjn"]
+[ext_resource type="AudioStream" uid="uid://doh6agr54ocla" path="res://assets/audio/horror-sound-4.mp3" id="13_b2suy"]
 [ext_resource type="Texture2D" uid="uid://1bjvufbfkwi" path="res://assets/tmp.png" id="13_dqqhb"]
 
 [sub_resource type="Environment" id="Environment_fn3g3"]
@@ -32,10 +34,11 @@ radius = 4.010742
 size = Vector3(2.2641718, 0.7712097, 4.282837)
 
 [node name="World" type="Node3D" unique_id=1507072864]
+script = ExtResource("1_ocfjn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1643046218]
 transform = Transform3D(1, 0, 0, 0, -0.50819993, 0.86123914, 0, -0.86123914, -0.50819993, 0, 15.638879, -23.12785)
-light_energy = 0.01
+light_energy = 10.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=690380970]
 environment = SubResource("Environment_fn3g3")
@@ -137,6 +140,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6185598, 0.7858858, -6.144
 
 [node name="GasolineCan11" parent="." unique_id=2027610109 instance=ExtResource("4_ov2xu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.893013, 0.7858858, -5.1367483)
+
+[node name="TerrorAmbience" type="AudioStreamPlayer" parent="." unique_id=158600204]
+stream = ExtResource("13_b2suy")
 
 [connection signal="body_entered" from="Cura" to="Cura" method="_on_body_entered"]
 [connection signal="body_entered" from="VictoryPoint" to="VictoryPoint" method="_on_body_entered"]
