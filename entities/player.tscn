@@ -18,7 +18,7 @@ shape = SubResource("CapsuleShape3D_tcf2h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64577353, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=849943507]
-transform = Transform3D(1, 0, 0, 0, 0.9988019, 0.048936933, 0, -0.048936933, 0.9988019, -0.016912222, -0.00910145, 0.4192297)
+transform = Transform3D(0.99999005, -0.00027214407, 0.004459732, 0, 0.9981433, 0.06090921, -0.004468028, -0.060908604, 0.99813336, 0.6623399, 0.3461308, 0.4192297)
 light_color = Color(0.9645303, 0.9873108, 0.9994883, 1)
 light_energy = 6.584
 light_indirect_energy = 1.634
@@ -27,8 +27,8 @@ light_specular = 1.134
 shadow_enabled = true
 shadow_bias = 0.228
 shadow_normal_bias = 1.297
-spot_range = 42.272
-spot_angle = 30.0
+spot_range = 431.35504
+spot_angle = 35.0
 spot_angle_attenuation = 1.624505
 
 [node name="HUD" parent="." unique_id=1687985223 instance=ExtResource("2_b0kkn")]
