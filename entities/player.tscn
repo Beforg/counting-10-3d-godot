@@ -7,11 +7,14 @@
 [ext_resource type="AudioStream" uid="uid://betx124d7hpeq" path="res://assets/audio/lesiakower-pills-container-shake-455964.mp3" id="5_6nm46"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcf2h"]
+radius = 0.35546875
+height = 1.8512974
 
 [node name="Player" type="CharacterBody3D" unique_id=2087979505]
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=411258123]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2836318, 0)
 shape = SubResource("CapsuleShape3D_tcf2h")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=312536554]
