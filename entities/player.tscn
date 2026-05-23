@@ -34,6 +34,8 @@ spot_range = 431.35504
 spot_angle = 35.0
 spot_angle_attenuation = 1.624505
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Camera3D" unique_id=574147393]
+
 [node name="HUD" parent="." unique_id=1687985223 instance=ExtResource("2_b0kkn")]
 
 [node name="HeartbeatLow" type="AudioStreamPlayer" parent="." unique_id=1126102430]
