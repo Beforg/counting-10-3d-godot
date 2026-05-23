@@ -5,23 +5,47 @@
 [ext_resource type="AudioStream" uid="uid://dehedm8sat58e" path="res://assets/audio/Calm_hearbeat.wav" id="3_qly61"]
 [ext_resource type="AudioStream" uid="uid://buxi36esjpawq" path="res://assets/audio/Scared_heartbeat.wav" id="4_qsoyl"]
 [ext_resource type="AudioStream" uid="uid://betx124d7hpeq" path="res://assets/audio/lesiakower-pills-container-shake-455964.mp3" id="5_6nm46"]
+[ext_resource type="PackedScene" uid="uid://4mu5pe2d6rxj" path="res://assets/hand.glb" id="6_6nm46"]
+[ext_resource type="PackedScene" uid="uid://cdk2py6ukymlf" path="res://assets/flashlight.glb" id="7_i623q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tcf2h"]
-radius = 0.35546875
-height = 1.8512974
+radius = 0.44726563
+height = 2.0472307
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qly61"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 5)
+gravity = Vector3(0, -0.02, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qsoyl"]
+albedo_color = Color(0.29954743, 0.29954746, 0.2995473, 1)
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_6nm46"]
+material = SubResource("StandardMaterial3D_qsoyl")
+size = Vector2(0.005, 0.005)
 
 [node name="Player" type="CharacterBody3D" unique_id=2087979505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77575064, 0)
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=411258123]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2836318, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18566513, 0)
 shape = SubResource("CapsuleShape3D_tcf2h")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=312536554]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64577353, 0)
 
+[node name="Sketchfab_Scene" parent="Camera3D" unique_id=207798386 instance=ExtResource("6_6nm46")]
+transform = Transform3D(-0.3403072, -0.2604503, 0.035448693, -0.070574164, 0.1463972, 0.39810437, -0.2532, 0.30924672, -0.15860716, -0.095564574, -0.58302903, -0.86290616)
+
+[node name="Sketchfab_Scene2" parent="Camera3D" unique_id=1997558583 instance=ExtResource("7_i623q")]
+transform = Transform3D(0.039057422, 0.008621168, 0.0004394437, -1.7801563e-10, -0.0020362614, 0.039948132, 0.008632361, -0.039006785, -0.001988278, -0.03721273, -0.59725267, -1.0493293)
+
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=849943507]
-transform = Transform3D(0.99999005, -0.00027214407, 0.004459732, 0, 0.9981433, 0.06090921, -0.004468028, -0.060908604, 0.99813336, 0.6623399, 0.3461308, 0.4192297)
+transform = Transform3D(0.99999005, -0.00027214407, 0.004459732, 0, 0.9981433, 0.06090921, -0.004468028, -0.060908604, 0.99813336, 0.09496713, -0.6499491, -1.9983873)
 light_color = Color(0.9645303, 0.9873108, 0.9994883, 1)
 light_energy = 6.584
 light_indirect_energy = 1.634
@@ -34,13 +58,21 @@ spot_range = 431.35504
 spot_angle = 35.0
 spot_angle_attenuation = 1.624505
 
+[node name="Poeira" type="GPUParticles3D" parent="Camera3D" unique_id=574147393]
+amount = 350
+lifetime = 3.6999999999999997
+process_material = SubResource("ParticleProcessMaterial_qly61")
+draw_pass_1 = SubResource("QuadMesh_6nm46")
+
 [node name="HUD" parent="." unique_id=1687985223 instance=ExtResource("2_b0kkn")]
 
 [node name="HeartbeatLow" type="AudioStreamPlayer" parent="." unique_id=1126102430]
 stream = ExtResource("3_qly61")
+volume_db = 3.649
 
 [node name="HeartbeatHight" type="AudioStreamPlayer" parent="." unique_id=2070160541]
 stream = ExtResource("4_qsoyl")
+volume_db = 3.649
 
 [node name="UseItem" type="AudioStreamPlayer" parent="." unique_id=184895196]
 stream = ExtResource("5_6nm46")
