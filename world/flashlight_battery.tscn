@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b026jqqodoqd6"]
 
-[ext_resource type="Script" uid="uid://b2lkt41i0i37p" path="res://world/cura.gd" id="1_8v132"]
+[ext_resource type="Script" uid="uid://cb4y6c6d63rh8" path="res://world/flashlight_battery.gd" id="1_8v132"]
 [ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="2_6uj15"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vowls"]

@@ -55,7 +55,8 @@ func _input(event: InputEvent) -> void:
 		if GameManager.torch_refills > 0:
 			item_sound.play()
 			GameManager.torch_refills -= 1
-			torch.light_energy = clamp(torch.light_energy + 1.25, 0.2, 9.99) # Corrigido typo aqui
+			torch.light_energy = clamp(torch.light_energy + 2.25, 0.2, 9.99)
+			torch.spot_range = clamp(torch.spot_range + 4.5, 3, 20) # Corrigido typo aqui
 			print("Tocha recarregada!")
 			
 	if event.is_action_pressed("ui_cancel"):
@@ -67,11 +68,11 @@ func _physics_process(delta: float) -> void:
 	# --- 1. GESTÃO DE VELOCIDADE E ESTADOS ---
 	if GameManager.is_adrenaline_active:
 		if GameManager.is_addicted:
-			speed = walk_speed * 1.2 # Bônus viciado
-			bob_freq = 3.0 # Passos um pouco mais rápidos
+			speed = walk_speed * 1.15 # Bônus viciado
+			bob_freq = 3.8 # Passos um pouco mais rápidos
 		else:
-			speed = walk_speed * 1.5 # Corrida desesperada
-			bob_freq = 4.5 # Câmera balança muito rápido!
+			speed = walk_speed * 1.24 # Corrida desesperada
+			bob_freq = 2.8 # Câmera balança muito rápido!
 	elif GameManager.terror_level >= 50.0:
 		speed = walk_speed * 0.8 # Lento por pânico
 		bob_freq = 1.5 # Passos pesados e arrastados
@@ -83,8 +84,9 @@ func _physics_process(delta: float) -> void:
 	if torch.light_energy > 0.2:
 		if GameManager.gasoline_count > 0:
 			torch.light_energy -= light_drain_rate * delta
-			#torch.light_size -= 0.01 * delta
-			print(torch.light_energy) 
+			torch.spot_range -=(light_drain_rate*2.05) * delta
+			print("ENERGIA" + str(torch.light_energy) + "TAMANHO: " + str(torch.spot_range))
+			print()
 
 	# --- 3. FÍSICA E MOVIMENTO ---
 	if not is_on_floor():
@@ -146,7 +148,7 @@ func _on_difficulty_increased(level: int) -> void:
 		light_drain_rate = 0.13 
 		print("PLAYER: A bateria está gastando mais rápido (Nível 1)")
 	elif level == 2:
-		light_drain_rate = 0.25 
+		light_drain_rate = 0.15 
 		print("PLAYER: A luz enfraqueceu e o cone fechou! (Nível 2)")
 
 func tocar_passo() -> void:

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://lxsuwvte0xi" path="res://assets/terror_engine_-_decayed_0.png" id="2_uvc0s"]
 [ext_resource type="Texture2D" uid="uid://bb18yqaumeo8y" path="res://assets/terror_engine_-_decayed_1.png" id="3_x8e4v"]
 [ext_resource type="Texture2D" uid="uid://13avcxcc7tgd" path="res://assets/terror_engine_-_decayed_2.png" id="4_rrp0o"]
+[ext_resource type="AudioStream" uid="uid://c2mucv4lrwa3h" path="res://assets/audio/enemy-sound.mp3" id="5_x8e4v"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mmdvd"]
 radius = 0.7836914
@@ -6890,3 +6891,10 @@ transform = Transform3D(1, -2.4980018e-16, -1.3877788e-16, 2.4980018e-16, 1, -6.
 libraries/ = SubResource("AnimationLibrary_0grtk")
 
 [node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1541444981]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1233343506]
+stream = ExtResource("5_x8e4v")
+volume_db = 2.991
+unit_size = 3.0
+autoplay = true
+max_distance = 14.5

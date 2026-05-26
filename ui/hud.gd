@@ -15,10 +15,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# 1. Atualiza os textos consultando o Autoload
-	gas_label.text = "Galões: " + str(GameManager.gasoline_count) + "/7"
+	gas_label.text = "Galões: " + str(GameManager.gasoline_count) + "/10"
 	terror_label.text = "Terror: " + str(int(GameManager.terror_level)) + "%"
-	torch_label.text = "Tocha: " + str(GameManager.torch_refills)
+	torch_label.text = "Baterias: " + str(GameManager.torch_refills)
 	adrenaline_label.text = "Adrenalina:" + str(GameManager.adrenaline_count)
+	cure_label.text = "Curas:" + str(GameManager.cures_count)
 	# 2. O Efeito de Pânico!
 	# Só começa a piscar/sujar a tela se o terror passar da metade
 	if GameManager.terror_level > 50.0:
