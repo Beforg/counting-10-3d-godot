@@ -4,7 +4,8 @@ enum State { HIDDEN, STALKING, HUNTING }
 var current_state: State = State.HIDDEN
 var is_active: bool = false 
 
-@onready var sprite = $Sprite3D
+@onready var pivot = $Pivot
+@onready var anim_player = $Pivot/EnemyModel/AnimationPlayer # Troque pelo nome do nó do modelo!
 @onready var terror_aura = $TerrorAura
 @export var player: Node3D
 
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	# Aplica gravidade para o monstro ficar no chão
 	if not is_on_floor():
 		velocity.y -= 9.8 * delta
-		
+	
 	if player != null and player.get("torch") != null:
 		var light = player.torch.light_energy
 		var distance = global_position.distance_to(player.global_position)
@@ -46,9 +47,9 @@ func _physics_process(delta: float) -> void:
 		if GameManager.terror_level >= 98.0 or is_furious:
 			current_state = State.HUNTING
 			current_safe_zone = 0.0 
-		elif light > 5: # Ajuste conforme a energia máxima da sua lanterna
+		elif light > 5.25: # Ajuste conforme a energia máxima da sua lanterna
 			current_state = State.HIDDEN
-		elif light > 3: 
+		elif light > 3.25: 
 			current_state = State.STALKING
 		else:
 			current_state = State.HUNTING
@@ -58,17 +59,24 @@ func _physics_process(delta: float) -> void:
 		var dir = global_position.direction_to(player.global_position)
 		dir.y = 0 
 		dir = dir.normalized()
+		
+		if dir != Vector3.ZERO:
+			var target_pos = player.global_position
+			target_pos.y = global_position.y # Trava a altura para ele não olhar pro chão/céu
+			pivot.look_at(target_pos, Vector3.UP)
 			
 		# --- 4. A AÇÃO 3D ---
 		match current_state:
 			State.HIDDEN:
-				sprite.visible = GameManager.terror_level > 25
+				anim_player.play("walk")
+				pivot.visible = GameManager.terror_level > 25
 				velocity.x = dir.x * stalk_speed * 0.45
 				velocity.z = dir.z * stalk_speed * 0.45
 				move_and_slide()
 				
 			State.STALKING:
-				sprite.visible = true
+				pivot.visible = true
+				anim_player.play("walk")
 				if distance > current_safe_zone:
 					velocity.x = dir.x * stalk_speed
 					velocity.z = dir.z * stalk_speed
@@ -86,7 +94,8 @@ func _physics_process(delta: float) -> void:
 				move_and_slide()
 				
 			State.HUNTING:
-				sprite.visible = true
+				anim_player.play("run")
+				pivot.visible = true
 				if distance > 15.0:
 					teleport_near_player(current_safe_zone)
 					distance = global_position.distance_to(player.global_position)
