@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cj7p051n34je5"]
+
+[ext_resource type="Script" uid="uid://b2lkt41i0i37p" path="res://world/cura.gd" id="1_xe0vs"]
+[ext_resource type="Texture2D" uid="uid://dr3o0vmg8a2i4" path="res://assets/cura.png" id="2_itykf"]
+[ext_resource type="AudioStream" uid="uid://dek6hgqu8gcvo" path="res://assets/audio/collect.mp3" id="3_7ph48"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mad0u"]
+
+[node name="Cura" type="Area3D" unique_id=1751349162]
+script = ExtResource("1_xe0vs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=43907475]
+shape = SubResource("BoxShape3D_mad0u")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1662683916]
+transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0, 0, 0)
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture = ExtResource("2_itykf")
+
+[node name="CollectSound" type="AudioStreamPlayer3D" parent="." unique_id=1128460129]
+stream = ExtResource("3_7ph48")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
