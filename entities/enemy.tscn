@@ -9,8 +9,8 @@
 radius = 0.7836914
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_fn3g3"]
-height = 3.3300781
-radius = 9.024902
+height = 3.444336
+radius = 10.113281
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pl2vv"]
 resource_name = "default"
@@ -6406,7 +6406,7 @@ shape = SubResource("CapsuleShape3D_mmdvd")
 [node name="TerrorAura" type="Area3D" parent="." unique_id=1291597155]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TerrorAura" unique_id=2103934466]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42792034, -0.042467594)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37079144, -0.042467594)
 shape = SubResource("CylinderShape3D_fn3g3")
 
 [node name="Pivot" type="Node3D" parent="." unique_id=1904032568]
@@ -6888,3 +6888,5 @@ transform = Transform3D(1, -2.4980018e-16, -1.3877788e-16, 2.4980018e-16, 1, -6.
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/EnemyModel" unique_id=1306051231]
 libraries/ = SubResource("AnimationLibrary_0grtk")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="." unique_id=1541444981]
