@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 			current_safe_zone = 0.0 
 		elif light > 6.0: 
 			current_state = State.HIDDEN
-		elif light > 3.25: 
+		elif light > 2.75: 
 			current_state = State.STALKING
 		else:
 			current_state = State.HUNTING
