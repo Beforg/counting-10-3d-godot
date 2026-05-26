@@ -28,7 +28,6 @@ material = SubResource("StandardMaterial3D_qsoyl")
 size = Vector2(0.005, 0.005)
 
 [node name="Player" type="CharacterBody3D" unique_id=2087979505]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.77575064, 0)
 script = ExtResource("1_merdl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=411258123]
@@ -54,13 +53,13 @@ light_specular = 1.134
 shadow_enabled = true
 shadow_bias = 0.228
 shadow_normal_bias = 1.297
-spot_range = 431.35504
+spot_range = 12.5
 spot_angle = 35.0
 spot_angle_attenuation = 1.624505
 
 [node name="Poeira" type="GPUParticles3D" parent="Camera3D" unique_id=574147393]
 amount = 350
-lifetime = 3.6999999999999997
+lifetime = 3.7
 process_material = SubResource("ParticleProcessMaterial_qly61")
 draw_pass_1 = SubResource("QuadMesh_6nm46")
 
@@ -68,11 +67,11 @@ draw_pass_1 = SubResource("QuadMesh_6nm46")
 
 [node name="HeartbeatLow" type="AudioStreamPlayer" parent="." unique_id=1126102430]
 stream = ExtResource("3_qly61")
-volume_db = 3.649
+volume_db = 12.772
 
 [node name="HeartbeatHight" type="AudioStreamPlayer" parent="." unique_id=2070160541]
 stream = ExtResource("4_qsoyl")
-volume_db = 3.649
+volume_db = 4.561
 
 [node name="UseItem" type="AudioStreamPlayer" parent="." unique_id=184895196]
 stream = ExtResource("5_6nm46")
