@@ -151,7 +151,7 @@ func _physics_process(delta: float) -> void:
 # --- NOVO SISTEMA DE TELEPORTE SEGURO ---
 func teleport_near_player(safe_zone: float) -> void:
 	var random_angle = randf() * TAU 
-	var spawn_distance = max(5.0, safe_zone + 5.0)
+	var spawn_distance = max(5.0, safe_zone + 3.50)
 	var offset = Vector3(cos(random_angle), 0, sin(random_angle)) * spawn_distance
 	
 	var desired_pos = player.global_position + offset
